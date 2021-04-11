@@ -1,44 +1,38 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <cmath>
+
 int main()
 {
-    // Create the main window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "c++an't [sic]");
-    // // Load a sprite to display
-    // sf::Texture texture;
-    // if (!texture.loadFromFile("cute_image.jpg"))
-    //     return EXIT_FAILURE;
-    // sf::Sprite sprite(texture);
-    // // Create a graphical text to display
-    // sf::Font font;
-    // if (!font.loadFromFile("arial.ttf"))
-    //     return EXIT_FAILURE;
-    // sf::Text text("Hello SFML", font, 50);
-    // // Load a music to play
-    // sf::Music music;
-    // if (!music.openFromFile("nice_music.ogg"))
-    //     return EXIT_FAILURE;
-    // // Play the music
-    // music.play();
-    // // Start the game loop
-    while (window.isOpen())
-    {
-        // // Process events
-        // sf::Event event;
-        // while (window.pollEvent(event))
-        // {
-        //     // Close window: exit
-        //     if (event.type == sf::Event::Closed)
-        //         window.close();
-        // }
-        // // Clear screen
-        // window.clear();
-        // // Draw the sprite
-        // window.draw(sprite);
-        // // Draw the string
-        // window.draw(text);
-        // Update the window
-        window.display();
-    }
-    return 0;
+	int x = 0;
+	// Create the main window
+	sf::RenderWindow window(sf::VideoMode(800, 600), "c++an't [sic]");
+	window.setFramerateLimit(60);
+	while (window.isOpen())
+	{
+		// Process events
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			// Close window: exit
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		// clear the window with black color
+		window.clear(sf::Color::Black);
+
+		sf::CircleShape shape(std::sin(x/100.f)*100, x);
+
+		shape.setFillColor(sf::Color(100, 250, 50));
+		shape.setPosition(400.f-std::sin(x/100.f)*100, 300.f-std::sin(x/100.f)*100);
+
+		window.draw(shape);
+		x++;
+
+
+		window.display();
+	}
+
+	return 0;
 }
