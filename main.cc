@@ -3,7 +3,7 @@
 int main()
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "c+an'ts [SIC]");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "c++an't [sic]");
     // // Load a sprite to display
     // sf::Texture texture;
     // if (!texture.loadFromFile("cute_image.jpg"))
