@@ -1,12 +1,20 @@
-#include <SFML/Audio.hpp>
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <cmath>
+#include "ant.hh"
+#include "utils.hh"
+#include <iostream>
+#include <cstring>
+
+const int WIDTH = 800;
+const int HEIGHT = 600;
 
 int main()
 {
 	int x = 0;
+	Ant test(urand(0,WIDTH), urand(0,HEIGHT), 1);
 	// Create the main window
-	sf::RenderWindow window(sf::VideoMode(800, 600), "c++an't [sic]");
+	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "c++an't [sic]");
 	window.setFramerateLimit(60);
 	while (window.isOpen())
 	{
@@ -19,17 +27,16 @@ int main()
 				window.close();
 		}
 
-		// clear the window with black color
-		window.clear(sf::Color::Black);
+		window.clear();
 
-		sf::CircleShape shape(std::sin(x/100.f)*100, x);
 
-		shape.setFillColor(sf::Color(100, 250, 50));
-		shape.setPosition(400.f-std::sin(x/100.f)*100, 300.f-std::sin(x/100.f)*100);
+		test.move();
 
-		window.draw(shape);
-		x++;
+		auto render = test.render();
 
+		// std::cout << render << std::endl;
+		window.draw(*render);
+		delete(render);
 
 		window.display();
 	}
